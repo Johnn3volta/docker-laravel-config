@@ -10,7 +10,7 @@ services:
       dockerfile: Dockerfile
     image: "jimmy/nginx"
     container_name: nginx
-#    user: "www-data:www-data"
+#    user: "1000:1000"
     restart: unless-stopped
     ports:
       - "80:80"
@@ -50,6 +50,7 @@ services:
     image: mysql:5.7.22
     container_name: database
     restart: unless-stopped
+    user: "1000:1000"
     volumes:
       - ./docker/mysql/db:/var/lib/mysql
     ports:
@@ -63,7 +64,7 @@ services:
   composer:
     image: composer:1.6
     container_name: composer
-    user: "www-data"
+    user: "1000:1000"
     volumes:
       - ${APP_PATH}:${DOCUMENT_ROOT}
     working_dir: ${DOCUMENT_ROOT}

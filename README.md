@@ -55,9 +55,12 @@ docker-compose ps
 
 Open browser and hit, `http://localhost:9001` and you should see the `phpinfo()` page.
 
-![alt text](screenshot.png "phpinfo page") 
+
 
 
 ## Troubleshooting
 
  - Make sure there are no containers listening to the ports used with this setup
+ 
+ 
+ Link for first time https://www.digitalocean.com/community/tutorials/how-to-set-up-laravel-nginx-and-mysql-with-docker-compose

@@ -2,6 +2,6 @@
 
 git clone https://github.com/laravel/laravel.git project
 
-docker run --rm -v project:/app composer install
+cp ./.env.example ./.env
 
-sudo chown -R $USER:$USER project
+docker-compose up --build
