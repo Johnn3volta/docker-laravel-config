@@ -1,6 +1,5 @@
 FROM php:7.2-fpm
 
-LABEL maintainer="GhazanfarMir@gmail.com"
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
 		libfreetype6-dev \
@@ -34,6 +33,7 @@ RUN docker-php-ext-install -j$(nproc) pdo_mysql mysqli pgsql pdo_pgsql \
         ## Install Composer
         && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
         && composer --version \
+        && usermod -u 1000 www-data
 
 
 # Add user for laravel application
@@ -43,7 +43,6 @@ RUN docker-php-ext-install -j$(nproc) pdo_mysql mysqli pgsql pdo_pgsql \
 #USER www-data
 
 
-RUN git clone https://github.com/laravel/laravel.git /var/www/html
 
 EXPOSE 9000
 CMD ["php-fpm"]

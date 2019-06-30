@@ -64,7 +64,7 @@ services:
   composer:
     image: composer:1.6
     container_name: composer
-    user: "1000:1000"
+    user: "1000:www-data"
     volumes:
       - ${APP_PATH}:${DOCUMENT_ROOT}
     working_dir: ${DOCUMENT_ROOT}

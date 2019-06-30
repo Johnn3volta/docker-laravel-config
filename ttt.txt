@@ -1,0 +1,38 @@
+
+1.adduser www-data --uid 1000
+2.addgroup www-data --gid 1000
+3.adduser www-data www-data
+
+
+docker-compose up --build                	                    | запустить контейнеры если нужна донастройка контейнеров(запускать в папке с Docker-compose)
+docker-compose up                 		                        | запустить контейнеры (запускать в папке с Docker-compose)
+docker-compose ps                 		                        | посмотреть все контейнеры запущеные через Docker-comsoe
+docker-compose rm                 		                        | удалить контейнер
+docker-compose exec <name-service> bash		                    | Открыть сервис (имя сервиса как в комроз файле, например web)
+docker ps                   	  		                        | посмотреть запущенные все контейнеры
+docker ps -a                      		                        | посмотреть все контейнеры (запущеные и остановленные)
+docker rm <id-container>          	        	                | удалить контейнер
+docker images                    		                        | посмотреть images
+docker images -a                  		                        | посмотреть запущенные images
+docker rmi $(docker images -a -q) 		                        | удалить все images
+docker rmi -f $(docker images -q)                               | принудительно удалить все images
+docker rm -v $(docker ps -aq -f status=exited)                  | удалить остановленные контейнеры
+docker stop $(docker ps -a -q)                                  | останвка всех контейнеров
+docker rm $(docker ps -a -q)                                    | удаление всех контейнеров
+docker volume ls                                                | посмотреть все volumes(томы)
+docker volume rm $(docker volume ls -f dangling=true -q)        | удалить все volumes(томов)
+export DOMAIN=example.com										| export переменной в config
+docker-compose config											| посмотреть конфиг docker-compose.yml
+
+docker-compose rm && docker rmi $(docker images -a -q) 	&& docker volume rm $(docker volume ls -f dangling=true -q)
+
+
+
+
+docker run -d -p <local-port>:<service-port> <name-image>       | Запускаем докер контайнер
+docker exec --it <id-container> /bin/bash                       | зайти в запущенный контейнер
+docker commit <id-container> <name-new-image>:<tag>(по желанию) | сохраняем новый image
+docker tag <old-name>:<tag> <new-name>:<tag>                    | Сделать копию Image
+
+Создание своих образов - https://www.youtube.com/watch?v=LNAATmw3ImM&list=PLD5U-C5KK50XMCBkY0U-NLzglcRHzOwAg&index=5
+                       - https://www.youtube.com/watch?v=Sa7uOGczoHc

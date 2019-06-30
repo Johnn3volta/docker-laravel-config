@@ -1,6 +1,4 @@
 FROM nginx
 
-LABEL maintainer="GhazanfarMir@gmail.com"
-
 RUN apt-get update \
-    && apt-get install -y procps vim
+    && apt-get install -y procps nano
