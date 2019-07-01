@@ -42,9 +42,9 @@ services:
       - appnet
     entrypoint: npm install
 
-  database:
+  db:
     image: mysql:5.7.22
-    container_name: database
+    container_name: db
     restart: unless-stopped
     user: "${UID}:${GID}"
     volumes:
