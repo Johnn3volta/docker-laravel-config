@@ -6,4 +6,4 @@ WORKDIR /app
 
 VOLUME ["/app"]
 
-RUN npm install
+#RUN npm install

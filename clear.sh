@@ -4,6 +4,6 @@ rm ./.env
 
 rm -rf project
 
-sudo rm -rf docker/mysql/db
+rm -rf docker/mysql/db
 
 mkdir docker/mysql/db

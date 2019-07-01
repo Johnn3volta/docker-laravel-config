@@ -10,4 +10,4 @@ echo "\nUID=$(id -u)" >> .env
 
 echo "GID=$(id -g)" >> .env
 
-docker-compose up --build
+docker-compose up -d --build
