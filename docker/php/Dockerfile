@@ -27,9 +27,9 @@ RUN docker-php-ext-install -j$(nproc) pdo_mysql mysqli pgsql pdo_pgsql \
         && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/  \
         && docker-php-ext-install -j$(nproc) gd \
         # Install Redis and xDebug
-        && pecl install redis \
-        && pecl install xdebug \
-        && docker-php-ext-enable redis xdebug \
+       # && pecl install redis \
+       # && pecl install xdebug \
+       # && docker-php-ext-enable redis xdebug \
         ## Install Composer
         && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
         && composer --version \

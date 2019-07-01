@@ -1,16 +1,15 @@
----
+version: "3.7"
 
-version: "3.3"
+networks:
+  appnet:
+    driver: bridge
 
 services:
 
   nginx:
-    build:
-      context: ./docker/nginx
-      dockerfile: Dockerfile
-    image: "jimmy/nginx"
+    build: ./docker/nginx
     container_name: nginx
-#    user: "1000:1000"
+    #    user: "www-data"
     restart: unless-stopped
     ports:
       - "80:80"
@@ -23,10 +22,7 @@ services:
       - appnet
 
   app:
-    build:
-      context: ./docker/php
-      dockerfile: Dockerfile
-    image: "jimmy/php-fpm"
+    build: ./docker/php
     container_name: app
     restart: unless-stopped
     volumes:
@@ -36,21 +32,21 @@ services:
       - appnet
 
   node:
-    build:
-      context: ./docker/node
-      dockerfile: Dockerfile
-    image: "jimmy/node"
+    build: ./docker/node
     container_name: node
+    tty: true
+    user: "${UID}:${GID}"
     volumes:
-      - ${APP_PATH}:${DOCUMENT_ROOT}
+      - ${APP_PATH}:/app
     networks:
       - appnet
+    entrypoint: npm install
 
   database:
     image: mysql:5.7.22
     container_name: database
     restart: unless-stopped
-    user: "1000:1000"
+    user: "${UID}:${GID}"
     volumes:
       - ./docker/mysql/db:/var/lib/mysql
     ports:
@@ -70,9 +66,3 @@ services:
     working_dir: ${DOCUMENT_ROOT}
     entrypoint: composer install
 
-networks:
-  appnet:
-    driver: "bridge"
-
-volumes:
-  nginx_db_data:

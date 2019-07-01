@@ -1,5 +1,9 @@
-FROM node:latest
+FROM node:10.15.0-alpine
 
-LABEL maintainer="GhazanfarMir@gmail.com"
+RUN apk add --no-cache bash
 
-RUN apt-get install -y git
+WORKDIR /app
+
+VOLUME ["/app"]
+
+RUN npm install
