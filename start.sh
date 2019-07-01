@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
-git clone https://github.com/laravel/laravel.git project
-
 cp ./.env.example ./.env
+
+git clone https://github.com/laravel/laravel.git ${APP_PATH}
+
 
 cp ./project/.env.example ./project/.env
 
